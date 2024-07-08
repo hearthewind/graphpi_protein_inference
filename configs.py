@@ -1,0 +1,13 @@
+PROJECT_ROOT_DIR = "/tmp/protein-inference-feb-tmp"
+
+PROJECT_DATA_DIR = "new_data_m_pep"
+
+DATA_LIST = ["PXD004789", 'PXD005388', 'PXD006640', 'PXD010319', 'PXD022881', 'PXD023593', 'PXD025701', 'PXD026991',
+             'PXD030448', 'PXD032035', 'PXD032284', 'PXD036171',
+             'PXD023034', 'PXD030330', 'PXD039272', 'PXD034012', 'PXD035125']
+
+# DATA_LIST = ["PXD004789"]
+
+# TEST_DATA = ['iPRG2016_A', 'iPRG2016_AB', 'iPRG2016_B', "ups2", "18mix", "yeast"]
+
+TEST_DATA = ['ups2', '18mix', 'yeast', 'iPRG2016_A', 'iPRG2016_AB', 'iPRG2016_B']
