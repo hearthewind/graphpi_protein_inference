@@ -202,6 +202,7 @@ def get_device():
         os.environ['CUDA_VISIBLE_DEVICES'] = str(cuda)
         print('Using GPU {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))
         device = torch.device('cuda:{}'.format(cuda))
+        device = torch.device('cpu') #TODO(m) remove this thing
     else:
         print('Using CPU')
         device = torch.device('cpu')

@@ -6,8 +6,8 @@ import configs
 # configs.TEST_DATA = ['18mix']
 # TEST_DATA = ['18mix']
 
-configs.TEST_DATA = ['hela_3t3']
-TEST_DATA = ['hela_3t3']
+configs.TEST_DATA = ['PXD004789']
+TEST_DATA = ['PXD004789']
 
 from train.util import get_device, build_optimizer, load_torch_algo, get_dataset, get_node_features, iprg_converter
 from datasets.util import get_proteins_by_fdr, get_proteins_by_fdr_forward
