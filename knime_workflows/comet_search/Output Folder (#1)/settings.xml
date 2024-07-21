@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <config key="FOLDERNAME_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="FOLDERNAME" type="xstring" value="/home/m/data3/Downloads/protein_inference_revision/hela_3t3_comet"/>
+        <config key="CREATE_IF_NOT_EXISTS_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="CREATE_IF_NOT_EXISTS" type="xboolean" value="true"/>
+        <config key="OVERWRITE_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="OVERWRITE" type="xboolean" value="true"/>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="factory" type="xstring" value="com.genericworkflownodes.knime.nodes.io.outputfolder.OutputFolderNodeFactory"/>
+    <entry key="node-name" type="xstring" value="Output Folder"/>
+    <entry key="node-bundle-name" type="xstring" value="GenericKnimeNodes"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="com.genericworkflownodes.knime"/>
+    <entry key="node-bundle-vendor" type="xstring" value="Freie Universitaet Berlin, Universitaet Tuebingen, and the GenericWorkflowNodes Team"/>
+    <entry key="node-bundle-version" type="xstring" value="1.0.0.v202207121439"/>
+    <entry key="node-feature-name" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-symbolic-name" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-version" type="xstring" value="0.0.0"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="Output Folder"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports"/>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+    </config>
+</config>

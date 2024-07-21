@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <entry key="PercolatorAdapter.version" type="xstring" value="2.7.0"/>
+        <entry key="PercolatorAdapter.1.enzyme" type="xstring" value="trypsin"/>
+        <entry key="PercolatorAdapter.1.peptide_level_fdrs" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.protein_level_fdrs" type="xstring" value="true"/>
+        <entry key="PercolatorAdapter.1.osw_level" type="xstring" value="ms2"/>
+        <entry key="PercolatorAdapter.1.score_type" type="xstring" value="pep"/>
+        <entry key="PercolatorAdapter.1.generic_feature_set" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.subset_max_train" type="xstring" value="0"/>
+        <entry key="PercolatorAdapter.1.cpos" type="xstring" value="0.0"/>
+        <entry key="PercolatorAdapter.1.cneg" type="xstring" value="0.0"/>
+        <entry key="PercolatorAdapter.1.testFDR" type="xstring" value="0.01"/>
+        <entry key="PercolatorAdapter.1.trainFDR" type="xstring" value="0.01"/>
+        <entry key="PercolatorAdapter.1.maxiter" type="xstring" value="10"/>
+        <entry key="PercolatorAdapter.1.nested_xval_bins" type="xstring" value="1"/>
+        <entry key="PercolatorAdapter.1.quick_validation" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.static" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.default_direction" type="xstring" isnull="true" value=""/>
+        <entry key="PercolatorAdapter.1.verbose" type="xstring" value="2"/>
+        <entry key="PercolatorAdapter.1.unitnorm" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.test_each_iteration" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.override" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.seed" type="xstring" value="1"/>
+        <entry key="PercolatorAdapter.1.doc" type="xstring" value="0"/>
+        <entry key="PercolatorAdapter.1.klammer" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.decoy_pattern" type="xstring" value="random"/>
+        <entry key="PercolatorAdapter.1.post_processing_tdc" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.train_best_positive" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.ipf_max_peakgroup_pep" type="xstring" value="0.7"/>
+        <entry key="PercolatorAdapter.1.ipf_max_transition_isotope_overlap" type="xstring" value="0.5"/>
+        <entry key="PercolatorAdapter.1.ipf_min_transition_sn" type="xstring" value="0.0"/>
+        <entry key="PercolatorAdapter.1.log" type="xstring" isnull="true" value=""/>
+        <entry key="PercolatorAdapter.1.debug" type="xstring" value="0"/>
+        <entry key="PercolatorAdapter.1.threads" type="xstring" value="1"/>
+        <entry key="PercolatorAdapter.1.no_progress" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.force" type="xstring" value="false"/>
+        <entry key="PercolatorAdapter.1.test" type="xstring" value="false"/>
+        <entry key="GENERIC_KNIME_NODES_outtype#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#0" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#0" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#1" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#1" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#1" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#1" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#2" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#2" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#2" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#2" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#3" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#3" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#3" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#3" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#4" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#4" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#4" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#4" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#5" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#5" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#5" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#5" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#6" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#6" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#6" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#6" type="xstring" value=""/>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="factory" type="xstring" value="de.openms.knime.nodes.PercolatorAdapter.PercolatorAdapterNodeFactory"/>
+    <entry key="node-name" type="xstring" value="PercolatorAdapter"/>
+    <entry key="node-bundle-name" type="xstring" value="Generic Workflow Nodes for KNIME: OpenMS"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="de.openms"/>
+    <entry key="node-bundle-vendor" type="xstring" value="Freie Universitaet Berlin, Universitaet Tuebingen, and the OpenMS Team"/>
+    <entry key="node-bundle-version" type="xstring" value="2.7.0.202109131426"/>
+    <entry key="node-feature-name" type="xstring" value="OpenMS"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="de.openms.feature.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-version" type="xstring" value="2.7.0.202109131426"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="PercolatorAdapter"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_2">
+            <entry key="index" type="xint" value="2"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_3">
+            <entry key="index" type="xint" value="3"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_4">
+            <entry key="index" type="xint" value="4"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_5">
+            <entry key="index" type="xint" value="5"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_6">
+            <entry key="index" type="xint" value="6"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_7">
+            <entry key="index" type="xint" value="7"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+    </config>
+</config>

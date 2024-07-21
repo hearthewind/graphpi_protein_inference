@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <entry key="IDFilter.version" type="xstring" value="2.7.0"/>
+        <entry key="IDFilter.1.var_mods" type="xstring" value="false"/>
+        <entry key="IDFilter.1.remove_duplicate_psm" type="xstring" value="false"/>
+        <entry key="IDFilter.1.remove_shared_peptides" type="xstring" value="false"/>
+        <entry key="IDFilter.1.keep_unreferenced_protein_hits" type="xstring" value="false"/>
+        <entry key="IDFilter.1.remove_decoys" type="xstring" value="false"/>
+        <entry key="IDFilter.1.delete_unreferenced_peptide_hits" type="xstring" value="false"/>
+        <entry key="IDFilter.1.remove_peptide_hits_by_metavalue" type="xstring" value=""/>
+        <entry key="IDFilter.1.log" type="xstring" isnull="true" value=""/>
+        <entry key="IDFilter.1.debug" type="xstring" value="0"/>
+        <entry key="IDFilter.1.threads" type="xstring" value="1"/>
+        <entry key="IDFilter.1.no_progress" type="xstring" value="false"/>
+        <entry key="IDFilter.1.force" type="xstring" value="false"/>
+        <entry key="IDFilter.1.test" type="xstring" value="false"/>
+        <entry key="IDFilter.1.precursor.rt" type="xstring" value=":"/>
+        <entry key="IDFilter.1.precursor.mz" type="xstring" value=":"/>
+        <entry key="IDFilter.1.precursor.length" type="xstring" value=":"/>
+        <entry key="IDFilter.1.precursor.charge" type="xstring" value=":"/>
+        <entry key="IDFilter.1.score.pep" type="xstring" value="0.0"/>
+        <entry key="IDFilter.1.score.prot" type="xstring" value="0.0"/>
+        <entry key="IDFilter.1.score.protgroup" type="xstring" value="0.0"/>
+        <entry key="IDFilter.1.whitelist.protein_accessions" type="xstring" value=""/>
+        <entry key="IDFilter.1.whitelist.ignore_modifications" type="xstring" value="false"/>
+        <entry key="IDFilter.1.whitelist.modifications" type="xstring" value=""/>
+        <entry key="IDFilter.1.blacklist.protein_accessions" type="xstring" value=""/>
+        <entry key="IDFilter.1.blacklist.ignore_modifications" type="xstring" value="false"/>
+        <entry key="IDFilter.1.blacklist.modifications" type="xstring" value=""/>
+        <entry key="IDFilter.1.blacklist.RegEx" type="xstring" isnull="true" value=""/>
+        <entry key="IDFilter.1.in_silico_digestion.enzyme" type="xstring" value="Trypsin"/>
+        <entry key="IDFilter.1.in_silico_digestion.specificity" type="xstring" value="full"/>
+        <entry key="IDFilter.1.in_silico_digestion.missed_cleavages" type="xstring" value="-1"/>
+        <entry key="IDFilter.1.in_silico_digestion.methionine_cleavage" type="xstring" value="false"/>
+        <entry key="IDFilter.1.missed_cleavages.number_of_missed_cleavages" type="xstring" value=":"/>
+        <entry key="IDFilter.1.missed_cleavages.enzyme" type="xstring" value="Trypsin"/>
+        <entry key="IDFilter.1.rt.p_value" type="xstring" value="0.0"/>
+        <entry key="IDFilter.1.rt.p_value_1st_dim" type="xstring" value="0.0"/>
+        <entry key="IDFilter.1.mz.error" type="xstring" value="-1.0"/>
+        <entry key="IDFilter.1.mz.unit" type="xstring" value="ppm"/>
+        <entry key="IDFilter.1.best.n_spectra" type="xstring" value="0"/>
+        <entry key="IDFilter.1.best.n_peptide_hits" type="xstring" value="0"/>
+        <entry key="IDFilter.1.best.n_protein_hits" type="xstring" value="0"/>
+        <entry key="IDFilter.1.best.strict" type="xstring" value="false"/>
+        <entry key="IDFilter.1.best.n_to_m_peptide_hits" type="xstring" value=":"/>
+        <entry key="GENERIC_KNIME_NODES_outtype#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#0" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#0" type="xstring" isnull="true" value=""/>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="factory" type="xstring" value="de.openms.knime.nodes.IDFilter.IDFilterNodeFactory"/>
+    <entry key="node-name" type="xstring" value="IDFilter"/>
+    <entry key="node-bundle-name" type="xstring" value="Generic Workflow Nodes for KNIME: OpenMS"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="de.openms"/>
+    <entry key="node-bundle-vendor" type="xstring" value="Freie Universitaet Berlin, Universitaet Tuebingen, and the OpenMS Team"/>
+    <entry key="node-bundle-version" type="xstring" value="2.7.0.202109131426"/>
+    <entry key="node-feature-name" type="xstring" value="OpenMS"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="de.openms.feature.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-version" type="xstring" value="2.7.0.202109131426"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="IDFilter"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+    </config>
+</config>

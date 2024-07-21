@@ -1,13 +1,10 @@
 import configs
-# configs.TEST_DATA = ["humanDC", "humanEKC", 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
-# TEST_DATA = ["humanDC", "humanEKC", 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
-# configs.TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
-# TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
-# configs.TEST_DATA = ['18mix']
-# TEST_DATA = ['18mix']
 
-configs.TEST_DATA = ['PXD004789']
-TEST_DATA = ['PXD004789']
+configs.TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
+TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
+
+# configs.TEST_DATA = ['PXD004789']
+# TEST_DATA = ['PXD004789']
 
 from train.util import get_device, build_optimizer, load_torch_algo, get_dataset, get_node_features, iprg_converter
 from datasets.util import get_proteins_by_fdr, get_proteins_by_fdr_forward

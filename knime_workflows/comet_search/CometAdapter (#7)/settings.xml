@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <entry key="CometAdapter.version" type="xstring" value="2.7.0"/>
+        <entry key="CometAdapter.1.precursor_mass_tolerance" type="xstring" value="20.0"/>
+        <entry key="CometAdapter.1.precursor_error_units" type="xstring" value="ppm"/>
+        <entry key="CometAdapter.1.isotope_error" type="xstring" value="off"/>
+        <entry key="CometAdapter.1.fragment_mass_tolerance" type="xstring" value="0.5"/>
+        <entry key="CometAdapter.1.fragment_error_units" type="xstring" value="Da"/>
+        <entry key="CometAdapter.1.fragment_bin_offset" type="xstring" value="0.4"/>
+        <entry key="CometAdapter.1.instrument" type="xstring" value="low_res"/>
+        <entry key="CometAdapter.1.use_A_ions" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.use_B_ions" type="xstring" value="true"/>
+        <entry key="CometAdapter.1.use_C_ions" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.use_X_ions" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.use_Y_ions" type="xstring" value="true"/>
+        <entry key="CometAdapter.1.use_Z_ions" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.use_NL_ions" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.enzyme" type="xstring" value="Trypsin/P"/>
+        <entry key="CometAdapter.1.second_enzyme" type="xstring" isnull="true" value=""/>
+        <entry key="CometAdapter.1.num_enzyme_termini" type="xstring" value="fully"/>
+        <entry key="CometAdapter.1.missed_cleavages" type="xstring" value="2"/>
+        <entry key="CometAdapter.1.min_peptide_length" type="xstring" value="5"/>
+        <entry key="CometAdapter.1.max_peptide_length" type="xstring" value="63"/>
+        <entry key="CometAdapter.1.num_hits" type="xstring" value="1"/>
+        <entry key="CometAdapter.1.precursor_charge" type="xstring" value="0:0"/>
+        <entry key="CometAdapter.1.override_charge" type="xstring" value="keep known search unknown"/>
+        <entry key="CometAdapter.1.ms_level" type="xstring" value="2"/>
+        <entry key="CometAdapter.1.activation_method" type="xstring" value="ALL"/>
+        <entry key="CometAdapter.1.digest_mass_range" type="xstring" value="600:5000"/>
+        <entry key="CometAdapter.1.max_fragment_charge" type="xstring" value="3"/>
+        <entry key="CometAdapter.1.max_precursor_charge" type="xstring" value="5"/>
+        <entry key="CometAdapter.1.clip_nterm_methionine" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.spectrum_batch_size" type="xstring" value="20000"/>
+        <entry key="CometAdapter.1.mass_offsets" type="xstring" value="0.000000@@@__@@@"/>
+        <entry key="CometAdapter.1.minimum_peaks" type="xstring" value="10"/>
+        <entry key="CometAdapter.1.minimum_intensity" type="xstring" value="0.0"/>
+        <entry key="CometAdapter.1.remove_precursor_peak" type="xstring" value="no"/>
+        <entry key="CometAdapter.1.remove_precursor_tolerance" type="xstring" value="1.5"/>
+        <entry key="CometAdapter.1.clear_mz_range" type="xstring" value="0:0"/>
+        <entry key="CometAdapter.1.fixed_modifications" type="xstring" value="Carbamidomethyl (C)@@@__@@@"/>
+        <entry key="CometAdapter.1.variable_modifications" type="xstring" value="Oxidation (M)@@@__@@@Acetyl:2H(3) (Protein N-term)@@@__@@@DeStreak (C)@@@__@@@Deamidated (N)@@@__@@@Deamidated (Q)@@@__@@@"/>
+        <entry key="CometAdapter.1.binary_modifications" type="xstring" value=""/>
+        <entry key="CometAdapter.1.max_variable_mods_in_peptide" type="xstring" value="5"/>
+        <entry key="CometAdapter.1.require_variable_mod" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.log" type="xstring" isnull="true" value=""/>
+        <entry key="CometAdapter.1.debug" type="xstring" value="0"/>
+        <entry key="CometAdapter.1.threads" type="xstring" value="1"/>
+        <entry key="CometAdapter.1.no_progress" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.force" type="xstring" value="false"/>
+        <entry key="CometAdapter.1.test" type="xstring" value="false"/>
+        <entry key="GENERIC_KNIME_NODES_outtype#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#0" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#0" type="xstring" value=""/>
+        <entry key="GENERIC_KNIME_NODES_outtype#1" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#1" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#1" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#1" type="xstring" value=""/>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="factory" type="xstring" value="de.openms.knime.nodes.CometAdapter.CometAdapterNodeFactory"/>
+    <entry key="node-name" type="xstring" value="CometAdapter"/>
+    <entry key="node-bundle-name" type="xstring" value="Generic Workflow Nodes for KNIME: OpenMS"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="de.openms"/>
+    <entry key="node-bundle-vendor" type="xstring" value="Freie Universitaet Berlin, Universitaet Tuebingen, and the OpenMS Team"/>
+    <entry key="node-bundle-version" type="xstring" value="2.7.0.202109131426"/>
+    <entry key="node-feature-name" type="xstring" value="OpenMS"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="de.openms.feature.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-version" type="xstring" value="2.7.0.202109131426"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="CometAdapter"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+        <config key="port_2">
+            <entry key="index" type="xint" value="2"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+    </config>
+</config>

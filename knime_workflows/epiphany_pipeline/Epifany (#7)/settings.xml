@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <entry key="Epifany.version" type="xstring" value="2.7.0"/>
+        <entry key="Epifany.1.protein_fdr" type="xstring" value="false"/>
+        <entry key="Epifany.1.conservative_fdr" type="xstring" value="true"/>
+        <entry key="Epifany.1.greedy_group_resolution" type="xstring" value="remove_proteins_wo_evidence"/>
+        <entry key="Epifany.1.min_psms_extreme_probability" type="xstring" value="0.0"/>
+        <entry key="Epifany.1.max_psms_extreme_probability" type="xstring" value="1.0"/>
+        <entry key="Epifany.1.log" type="xstring" isnull="true" value=""/>
+        <entry key="Epifany.1.debug" type="xstring" value="0"/>
+        <entry key="Epifany.1.threads" type="xstring" value="12"/>
+        <entry key="Epifany.1.no_progress" type="xstring" value="false"/>
+        <entry key="Epifany.1.force" type="xstring" value="false"/>
+        <entry key="Epifany.1.test" type="xstring" value="false"/>
+        <entry key="Epifany.1.algorithm.psm_probability_cutoff" type="xstring" value="0.001"/>
+        <entry key="Epifany.1.algorithm.top_PSMs" type="xstring" value="1"/>
+        <entry key="Epifany.1.algorithm.keep_best_PSM_only" type="xstring" value="true"/>
+        <entry key="Epifany.1.algorithm.update_PSM_probabilities" type="xstring" value="true"/>
+        <entry key="Epifany.1.algorithm.user_defined_priors" type="xstring" value="false"/>
+        <entry key="Epifany.1.algorithm.annotate_group_probabilities" type="xstring" value="true"/>
+        <entry key="Epifany.1.algorithm.use_ids_outside_features" type="xstring" value="false"/>
+        <entry key="Epifany.1.algorithm.model_parameters.prot_prior" type="xstring" value="-1.0"/>
+        <entry key="Epifany.1.algorithm.model_parameters.pep_emission" type="xstring" value="-1.0"/>
+        <entry key="Epifany.1.algorithm.model_parameters.pep_spurious_emission" type="xstring" value="-1.0"/>
+        <entry key="Epifany.1.algorithm.model_parameters.pep_prior" type="xstring" value="0.1"/>
+        <entry key="Epifany.1.algorithm.model_parameters.regularize" type="xstring" value="false"/>
+        <entry key="Epifany.1.algorithm.model_parameters.extended_model" type="xstring" value="false"/>
+        <entry key="Epifany.1.algorithm.loopy_belief_propagation.scheduling_type" type="xstring" value="priority"/>
+        <entry key="Epifany.1.algorithm.loopy_belief_propagation.convergence_threshold" type="xstring" value="1.0E-5"/>
+        <entry key="Epifany.1.algorithm.loopy_belief_propagation.dampening_lambda" type="xstring" value="0.001"/>
+        <entry key="Epifany.1.algorithm.loopy_belief_propagation.max_nr_iterations" type="xstring" value="2147483647"/>
+        <entry key="Epifany.1.algorithm.loopy_belief_propagation.p_norm_inference" type="xstring" value="1.0"/>
+        <entry key="Epifany.1.algorithm.param_optimize.aucweight" type="xstring" value="0.3"/>
+        <entry key="Epifany.1.algorithm.param_optimize.conservative_fdr" type="xstring" value="true"/>
+        <entry key="Epifany.1.algorithm.param_optimize.regularized_fdr" type="xstring" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_outtype#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_active#0" type="xboolean" value="true"/>
+        <entry key="GENERIC_KNIME_NODES_linkedinput#0" type="xint" value="0"/>
+        <entry key="GENERIC_KNIME_NODES_custombasename#0" type="xstring" value=""/>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="factory" type="xstring" value="de.openms.knime.nodes.Epifany.EpifanyNodeFactory"/>
+    <entry key="node-name" type="xstring" value="Epifany"/>
+    <entry key="node-bundle-name" type="xstring" value="Generic Workflow Nodes for KNIME: OpenMS"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="de.openms"/>
+    <entry key="node-bundle-vendor" type="xstring" value="Freie Universitaet Berlin, Universitaet Tuebingen, and the OpenMS Team"/>
+    <entry key="node-bundle-version" type="xstring" value="2.7.0.202109131426"/>
+    <entry key="node-feature-name" type="xstring" value="OpenMS"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="de.openms.feature.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
+    <entry key="node-feature-version" type="xstring" value="2.7.0.202109131426"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="Epifany"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+    </config>
+</config>
