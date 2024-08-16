@@ -5,9 +5,7 @@
    └── code:
    └── data: the folder contains the PSM features, database and ...
    └── results: our trained model is saved here.
-   └── 
-   └── 
-
+   └── knime_workflows: contains the knime workflows for how to reproduce the PIA, .... results..
 
 ## Usage
 
