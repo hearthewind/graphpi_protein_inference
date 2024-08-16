@@ -14,13 +14,13 @@ class IPRG2016(Dataset):
         self.psm_feature_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/psm_features", f"result_{data_type.lower()}.json")
         self.protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/{pretrain_data_name}_result", f"result_{data_type.lower()}.json")
         self.fido_protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/fido_result", f"result_{data_type.lower()}.json")
-        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/decoy", f"decoy.fasta")
+        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/database", f"decoy.fasta")
 
         self.data_type = data_type
 
-        self.random_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/fasta", f"prest_1000_random.fasta")).keys())
-        self.a_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/fasta", f"prest_pool_a.fasta")).keys())
-        self.b_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/fasta", f"prest_pool_b.fasta")).keys())
+        self.random_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/database", f"prest_1000_random.fasta")).keys())
+        self.a_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/database", f"prest_pool_a.fasta")).keys())
+        self.b_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_folder}/database", f"prest_pool_b.fasta")).keys())
         super().__init__("iPRG2016_"+data_type, protein_label_type, prior, train=train, prior_offset=prior_offset, filter_psm=filter_psm, output_type=output_type)
         #self.get_neo4j_data(self.psm_features)
         pass

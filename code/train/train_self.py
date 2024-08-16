@@ -1,6 +1,5 @@
 import gc
-
-from train.util import get_device, build_optimizer, load_torch_algo, compute_pauc
+from train.util import build_optimizer, load_torch_algo, compute_pauc
 import torch
 import torch.nn.functional as F
 import numpy as np
@@ -11,7 +10,6 @@ from sklearn.metrics import roc_auc_score
 from train.util import save_torch_algo, get_sampler_hetero as get_sampler
 from datasets.util import get_proteins_by_fdr
 from train.util import iprg_converter, get_node_features, get_dataset
-#from train.util import get_model
 from train.util import get_model_hetero as get_model
 import random
 from configs import PROJECT_ROOT_DIR, PROJECT_DATA_DIR
@@ -60,7 +58,6 @@ def parse_args():
     parser.add_argument('--percentage', type=float, default=1.0)
     parser.add_argument('--average', type=bool, default=True)
     parser.add_argument('--concat_old', type=bool, default=False)
-
     parser.add_argument('--save_result_dir', type=str, default="self_avg")
 
     parser.add_argument('-f')
@@ -70,6 +67,8 @@ def parse_args():
     return args
 
 def main():
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     args = parse_args()
 
@@ -100,8 +99,6 @@ def main():
             train_sampler = get_sampler(data, train_proteins, args.batch_size, fan_out=[-1] * args.num_gnn_layers, rebalance=False)
             valid_sampler = get_sampler(data, valid_proteins, args.batch_size, fan_out=[-1] * args.num_gnn_layers, rebalance=False)
             all_sampler = get_sampler(data, torch.LongTensor(list(data.protein_map.values())), args.batch_size, fan_out=[-1] * args.num_gnn_layers, rebalance=False)
-            # train_sampler = get_sampler(data, train_proteins, args.batch_size, fan_out=[25, 10, 10, 10], rebalance=False)
-            # valid_sampler = get_sampler(data, valid_proteins, args.batch_size, fan_out=[25, 10, 10, 10], rebalance=False)
             data_samplers.append((data, train_sampler, valid_sampler))
             st_samplers.append((data, all_sampler))
 
@@ -133,15 +130,14 @@ def main():
         else:
             group_name = test_data.dataset
 
-        with open(os.path.join(PROJECT_ROOT_DIR, "outputs", f"{group_name}_groups.pkl"), "wb") as f:
+        path = os.path.join(PROJECT_ROOT_DIR, args.save_result_dir, "groups")
+        if not os.path.exists(path):
+            os.makedirs(path)
+        with open(os.path.join(path, f"{group_name}_groups.pkl"), "wb") as f:
             pickle.dump(indishtinguishable_group, f)
-
-        print(f"benchmark score ({args.pretrain_data_name}) on dataset ({test_data.dataset}) is:", \
-              len(get_proteins_by_fdr(test_data.protein_scores, contaminate_proteins=test_data.get_contaminate_proteins(), fdr=0.01, indishtinguishable_group=indishtinguishable_group)))
 
     valid_datasets = [dataset for dataset in test_datasets if dataset.dataset != "yeast"]
 
-    device = get_device()
 
     train_pipeline(args, data_samplers, st_samplers, test_datasets, test_samplers, valid_datasets, test_data, device, evaluate_epoch_num=1)
 
@@ -149,11 +145,7 @@ def main():
 def train_pipeline(args, data_samplers, st_samplers, test_datasets, test_samplers, valid_datasets, test_data, device, evaluate_epoch_num=1):
 
     models = get_model(args, device, test_data)
-    # build optimizer
-    # parameters = []
-    # for model in models:
-    #     parameters.extend(list(model.parameters()))
-    # scheduler, optimizer = build_optimizer(args, parameters)
+
     scheduler, optimizer = build_optimizer(args, models.parameters())
 
     best_valid_score = 0
@@ -173,7 +165,7 @@ def train_pipeline(args, data_samplers, st_samplers, test_datasets, test_sampler
             if epoch % evaluate_epoch_num == 0:
                 len_true_proteins, _ = evaluate_hetero_batch(models, test_samplers, device)
 
-        model_name = f"{args.save_result_dir}/pretrain_st_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
+        model_name = f"{args.save_result_dir}/trained_model/pretrain_st_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
         if args.loss_type == "soft_entropy":
             if best_valid_loss > valid_loss:
                 best_true_proteins = len_true_proteins
@@ -202,8 +194,8 @@ def train_pipeline(args, data_samplers, st_samplers, test_datasets, test_sampler
     #best_true_proteins, _, best_pauc = evaluate_hetero(models, valid_datasets, device)
 
     result_dict, len_true_proteins = store_result(args, test_datasets, device, models, test_fdr=0.05)
-    num_layers = len(args.model_types.split("_"))
-    get_fdr_vs_TP_graphs(save_dir=args.save_result_dir, result_dict=result_dict, image_post_fix=f"{num_layers}_{args.node_hidden_dim}_{args.rounds}_{args.epochs}_{args.lr}")
+    #num_layers = len(args.model_types.split("_"))
+    #get_fdr_vs_TP_graphs(save_dir=args.save_result_dir, result_dict=result_dict, image_post_fix=f"{num_layers}_{args.node_hidden_dim}_{args.rounds}_{args.epochs}_{args.lr}")
     return len_true_proteins
 
 
@@ -276,7 +268,7 @@ def one_round_self_training(args, i, st_samplers, device, old_models, old_params
     best_valid_score = 0
     best_valid_loss = np.inf
 
-    model_name = f"{args.save_result_dir}/selftrain{i}_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
+    model_name = f"{args.save_result_dir}/trained_model/selftrain{i}_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
     for epoch in range(args.epochs+1):
 
         if args.batch_size <= 0:
@@ -326,7 +318,7 @@ def store_result(args, test_datasets, device, models, test_fdr=0.05):
 def store_result_avg(args, test_datasets, device, test_fdr=0.05):
     models = get_model(args, device, test_datasets[0])
     models.eval()
-    model_name = f"{args.save_result_dir}/pretrain_st_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
+    model_name = f"{args.save_result_dir}/trained_model/pretrain_st_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
     models = load_torch_algo(model_name, models, device)
 
     _, result_dict, _ = evaluate_hetero(models, test_datasets, device)
@@ -338,7 +330,7 @@ def store_result_avg(args, test_datasets, device, test_fdr=0.05):
             final_result_dict[dataset_name][key] = [value]
 
     for i in range(1, args.rounds + 1):
-        model_name = f"{args.save_result_dir}/selftrain{i}_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
+        model_name = f"{args.save_result_dir}/trained_model/selftrain{i}_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
         models = load_torch_algo(model_name, models, device)
         _, result_dict, _ = evaluate_hetero(models, test_datasets, device)
 
@@ -374,16 +366,17 @@ def store_result_avg(args, test_datasets, device, test_fdr=0.05):
         len_true_proteins[dataset.dataset] = len(true_proteins)
 
     for dataset, data in avg_result_dict.items():
-        if "2016TS" in dataset:
+        if "2016" in dataset:
             dataset_prefix, dataset_type = dataset.split("_")
-            data_dir = "/home/m/data1/Temp/Jupyter/two_species/iprg2016"
-            data_path = os.path.join(data_dir, f"mymodel_result", f"result_{dataset_type}.pkl")
-        elif "2016" in dataset:
-            dataset_prefix, dataset_type = dataset.split("_")
-            data_path = os.path.join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_prefix.lower()}", f"mymodel_result",
-                                     f"result_{dataset_type}.pkl")
+            path = os.path.join(PROJECT_ROOT_DIR, args.save_result_dir, "predictions", f"{dataset_prefix.lower()}", f"graphpi_result")
+            if not os.path.exists(path):
+                os.makedirs(path)
+            data_path = os.path.join(path, f"result_{dataset_type}.pkl")
         else:
-            data_path = os.path.join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset}", "mymodel_result", "result.pkl")
+            path = os.path.join(PROJECT_ROOT_DIR, args.save_result_dir, "predictions", f"{dataset}", "graphpi_result")
+            if not os.path.exists(path):
+                os.makedirs(path)
+            data_path = os.path.join(path, "result.pkl")
 
         with open(data_path, "wb") as f:
             pickle.dump(data, f)
@@ -398,10 +391,10 @@ def store_results_onemodel(models, test_datasets, device):
     for dataset, data in result_dict.items():
         if "2016" in dataset:
             dataset_prefix, dataset_type = dataset.split("_")
-            data_path = os.path.join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_prefix.lower()}", f"mymodel_result",
+            data_path = os.path.join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset_prefix.lower()}", f"graphpi_result",
                                      f"result_{dataset_type}.pkl")
         else:
-            data_path = os.path.join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset}", "mymodel_result", "result.pkl")
+            data_path = os.path.join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"{dataset}", "graphpi_result", "result.pkl")
 
         with open(data_path, "wb") as f:
             pickle.dump(data, f)

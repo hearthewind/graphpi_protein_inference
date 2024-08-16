@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from os.path import join
-from configs import PROJECT_ROOT_DIR, PROJECT_DATA_DIR
+from configs import PROJECT_ROOT_DIR, PROJECT_DATA_DIR, TEST_DATA
 from datasets.util import get_proteins_by_fdr
 from train.util import get_dataset, iprg_converter
 import pickle
@@ -12,29 +12,18 @@ from datasets.mix18 import Mix18
 
 def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="default"):
     X = []
-    # baselines = ["pia", "deeppep", "epifany", "fido", "mymodel"]
-    # datasets = ["iPRG2016_A", "iPRG2016_B", "iPRG2016_AB", "yeast", "ups2"]
-    # group_name = ["iprg_a", "iprg_b", "iprg_ab", "yeast", "ups2"]
 
-    baselines = ["mymodel", "epifany", "fido", "pia", 'deeppep']
-    # baselines = ["proteinprophet"]
+    baselines = ["graphpi", "epifany", "fido", "pia", 'deeppep']
 
-    # datasets = ["iPRG2016_A", "iPRG2016_B", "iPRG2016_AB", "ups2", 'yeast', '18mix']
-    # group_name = ["iprg_a", "iprg_b", "iprg_ab", 'ups2', 'yeast', '18mix']
+    datasets = ["iPRG2016_A", "iPRG2016_B", "iPRG2016_AB", "ups2", '18mix', "hela_3t3", "yeast"]
+    group_name = ["iprg_a", "iprg_b", "iprg_ab", 'ups2', '18mix', "hela_3t3", "yeast"]
 
-    datasets = ['hela_3t3']
-    group_name = ['hela_3t3']
-
-    # datasets = ["iPRG2016_A", "iPRG2016_B", "iPRG2016_AB", "ups2", '18mix']
-    # group_name = ["iprg_a", "iprg_b", "iprg_ab", 'ups2', '18mix']
-
-    # datasets = ['18mix', 'ups2']
-    # group_name = ['18mix', 'ups2']
+    group_name_map = dict(zip(datasets, group_name))
 
     indistinguishable_groups = {}
-    for i, data in enumerate(group_name):
-        with open(os.path.join(PROJECT_ROOT_DIR, "outputs", f"{data}_groups.pkl"), "rb") as f:
-            indistinguishable_groups[datasets[i]] = pickle.load(f)
+    for dataset in TEST_DATA:
+        with open(os.path.join(PROJECT_ROOT_DIR, save_dir, "groups", f"{group_name_map[dataset]}_groups.pkl"), "rb") as f:
+            indistinguishable_groups[dataset] = pickle.load(f)
 
     fdr_rates = np.arange(0, 0.15, 0.01)
     for dataset in datasets:
@@ -53,18 +42,18 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
                     protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
                                               f"{dataset}/{pretrain_data_name}_result", "result.json")
                 protein_scores = data.extract_protein_score(protein_score_path)
-            elif pretrain_data_name == "mymodel":
+            elif pretrain_data_name == "graphpi":
                 if result_dict is None:
                     if "iPRG2016" in dataset:
                         dataset_prefix, dataset_type = dataset.split("_")
-                        protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
+                        protein_score_path = join(PROJECT_ROOT_DIR, save_dir, "predictions",
                                                   f"{dataset_prefix.lower()}/{pretrain_data_name}_result",
                                                   f"result_{dataset_type}.pkl")
                     elif 'hela_3t3' in dataset:
-                        protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
+                        protein_score_path = join(PROJECT_ROOT_DIR, save_dir, "predictions",
                                                   f"{dataset}/{pretrain_data_name}_result", f"{data.data_code}.pkl")
                     else:
-                        protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
+                        protein_score_path = join(PROJECT_ROOT_DIR, save_dir, "predictions",
                                                   f"{dataset}/{pretrain_data_name}_result", "result.pkl")
                     with open(protein_score_path, "rb") as f:
                         protein_scores = pickle.load(f)
@@ -151,7 +140,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
                 X.append({"method": pretrain_data_name, "dataset": dataset, "fdr": fdr_rate, "# positive proteins": num_pos_proteins})
 
     X = pd.DataFrame(X)
-    pd.DataFrame(X).to_csv(os.path.join(PROJECT_ROOT_DIR, "outputs", save_dir, f"results_comparison_{image_post_fix}.csv"), index=False)
+    pd.DataFrame(X).to_csv(os.path.join(PROJECT_ROOT_DIR, save_dir, "predictions", f"results_comparison_{image_post_fix}.csv"), index=False)
     
     
     data_ = pd.DataFrame(X)
@@ -165,9 +154,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
         ax.set_title(dataset)
         ax.legend(loc="right")
     plt.tight_layout()
-    #plt.savefig(os.path.join(PROJECT_ROOT_DIR, "outputs", "experiment_plot.png"))
-    plt.savefig(os.path.join(PROJECT_ROOT_DIR, "outputs", save_dir, f"experiment_plot_{image_post_fix}.png"))
-    # plt.show()
+    plt.savefig(os.path.join(PROJECT_ROOT_DIR, save_dir, "predictions", f"experiment_plot_{image_post_fix}.png"))
 
 import json
 def extract_protein_score(protein_score_path, method="pia"):

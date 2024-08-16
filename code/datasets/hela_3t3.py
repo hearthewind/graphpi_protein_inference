@@ -12,7 +12,7 @@ class Hela3T3(Dataset):
 
         self.psm_feature_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3/psm_features", f"{data_code}.json")
         self.protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3/{pretrain_data_name}_result", f"{data_code}.json")
-        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3", "human_mouse_decoy.fasta")
+        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3", "database", "human_mouse_decoy.fasta")
         super().__init__(f"hela_3t3", protein_label_type, prior=prior, train=train, prior_offset=prior_offset, filter_psm=filter_psm, output_type=output_type)
 
         self.data_code = data_code
@@ -21,9 +21,9 @@ class Hela3T3(Dataset):
         print('data_code', data_code)
 
         if groundtruth_method == 'human':
-            self.true_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3/fasta", f"human_proteome.fasta")).keys())
+            self.true_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3/database", f"human_proteome.fasta")).keys())
         elif groundtruth_method == 'mouse':
-            self.true_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3/fasta", f"mouse_proteome.fasta")).keys())
+            self.true_proteins = list(self.get_protein_sequences(join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"hela_3t3/database", f"mouse_proteome.fasta")).keys())
         else:
             raise NotImplementedError(f"groundtruth method {groundtruth_method} is not implemented")
 

@@ -8,7 +8,8 @@ class UPS2(Dataset):
     def __init__(self, protein_label_type, prior=True, prior_offset=0.9, train=True, filter_psm=True, output_type="cross_entropy", pretrain_data_name="epifany"):
         self.psm_feature_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "ups2/psm_features", "result.json")
         self.protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"ups2/{pretrain_data_name}_result", "result.json")
-        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "ups2", "decoy", "mask_all_decoy.fasta")
+        #self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "ups2", "decoy", "mask_all_decoy.fasta")
+        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"ups2/database", "mask_all_decoy.fasta")
 
         super().__init__("ups2", protein_label_type, prior, train=train, prior_offset=prior_offset, filter_psm=filter_psm, output_type=output_type)
 

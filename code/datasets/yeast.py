@@ -8,10 +8,10 @@ class Yeast(Dataset):
 
     def __init__(self, protein_label_type, prior=True, prior_offset=0.9, train=True, filter_psm=True, output_type="cross_entropy", pretrain_data_name="epifany"):
         #self.ground_truth_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "yeast", "raw_data", "yeast_5MSdatasets_in2ormore.lst.txt")
-        self.ground_truth_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "yeast", "present_proteins.lst")
+        self.ground_truth_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "yeast/database", "present_proteins.lst")
         self.psm_feature_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "yeast/psm_features", "result.json")
         self.protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"yeast/{pretrain_data_name}_result", "result.json")
-        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"yeast/decoy", "decoy.fasta")
+        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"yeast/database", "decoy.fasta")
 
         with open(self.ground_truth_path, "r") as f:
             self.true_proteins = f.readlines()

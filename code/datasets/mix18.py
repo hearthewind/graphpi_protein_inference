@@ -6,10 +6,10 @@ class Mix18(Dataset):
 
     def __init__(self, protein_label_type, prior=True, prior_offset=0.9, train=True, filter_psm=True, output_type="cross_entropy", pretrain_data_name="epifany"):
         #self.ground_truth_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "yeast", "raw_data", "yeast_5MSdatasets_in2ormore.lst.txt")
-        self.ground_truth_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "18mix", "fasta", "18mix.fasta")
+        self.ground_truth_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "18mix", "database", "18mix.fasta")
         self.psm_feature_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "18mix/psm_features", "result.json")
         self.protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"18mix/{pretrain_data_name}_result", "result.json")
-        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "18mix/decoy", "decoy.fasta")
+        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, "18mix/database", "decoy.fasta")
         
         self.true_proteins = list(self.get_protein_sequences(self.ground_truth_path).keys())
         #print(f"lenght of true proteins {len(self.true_proteins)}")

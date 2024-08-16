@@ -39,8 +39,6 @@ class Dataset():
         self.train = train
         self.output = output_type
 
-        # print(f"benchmark score on dataset ({self.dataset}) is:",\
-        #   len(get_proteins_by_fdr(self.protein_scores, contaminate_proteins=self.get_contaminate_proteins(), fdr=0.05)))#, indishtinguishable_group=self.indishtinguishable_group)))
         self.protein_scores = self.extract_protein_score()
         self.psm_features = self.extract_psm_feature(filter=filter_psm)
         self.generate_id_map(self.psm_features)

@@ -158,58 +158,6 @@ def get_dataset(dataset="HumanDC", train=True, prior=True, prior_offset=0.9, pro
     return data
 
 
-# get gpu usage
-def get_gpu_memory_map():
-    """Get the current gpu usage.
-
-    Returns
-    -------
-    usage: dict
-        Keys are device ids as integers.
-        Values are memory usage as integers in MB.
-    """
-    result = subprocess.check_output(
-        [
-            'nvidia-smi', '--query-gpu=memory.used',
-            '--format=csv,nounits,noheader'
-        ], encoding='utf-8')
-    # Convert lines into a dictionary
-    gpu_memory = np.array([int(x) for x in result.strip().split('\n')])
-    # gpu_memory_map = dict(zip(range(len(gpu_memory)), gpu_memory))
-    return gpu_memory
-
-
-def auto_select_gpu(memory_threshold = 7000, smooth_ratio=200, strategy='greedy'):
-    gpu_memory_raw = get_gpu_memory_map() + 10
-    if strategy=='random':
-        gpu_memory = gpu_memory_raw/smooth_ratio
-        gpu_memory = gpu_memory.sum() / (gpu_memory+10)
-        gpu_memory[gpu_memory_raw>memory_threshold] = 0
-        gpu_prob = gpu_memory / gpu_memory.sum()
-        cuda = str(np.random.choice(len(gpu_prob), p=gpu_prob))
-        print('GPU select prob: {}, Select GPU {}'.format(gpu_prob, cuda))
-    elif strategy == 'greedy':
-        cuda = np.argmin(gpu_memory_raw)
-        print('GPU mem: {}, Select GPU {}'.format(gpu_memory_raw[cuda], cuda))
-    return cuda
-
-
-def get_device():
-    if torch.cuda.is_available():
-        cuda = auto_select_gpu()
-        cuda = 0 # TODO(m) delete this line
-        os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-        os.environ['CUDA_VISIBLE_DEVICES'] = str(cuda)
-        print('Using GPU {}'.format(os.environ['CUDA_VISIBLE_DEVICES']))
-        device = torch.device('cuda:{}'.format(cuda))
-        device = torch.device('cpu') #TODO(m) remove this thing
-    else:
-        print('Using CPU')
-        device = torch.device('cpu')
-
-    # device = torch.device('cpu') # TODO(m) delete this line
-    return device
-
 def build_optimizer(args, params):
     weight_decay = args.weight_decay
     filter_fn = filter(lambda p : p.requires_grad, params)
@@ -231,7 +179,7 @@ def build_optimizer(args, params):
 
 
 def save_torch_algo(model, out_dir):
-    saved_model_filename = os.path.join(PROJECT_ROOT_DIR, "trained_model", out_dir)
+    saved_model_filename = os.path.join(PROJECT_ROOT_DIR, out_dir)
     if not os.path.exists(saved_model_filename):
         os.makedirs(saved_model_filename)
 
@@ -262,7 +210,7 @@ def save_torch_algo(model, out_dir):
 
 def load_torch_algo(out_dir, models, device="cpu"):
 
-    saved_model_filename = os.path.join(PROJECT_ROOT_DIR, "trained_model", out_dir)
+    saved_model_filename = os.path.join(PROJECT_ROOT_DIR, out_dir)
     paths = sorted(os.listdir(saved_model_filename))
     if isinstance(models, list):
         for i, _ in enumerate(models):

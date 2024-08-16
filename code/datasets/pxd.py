@@ -1,4 +1,3 @@
-#from datasets.dataset import Dataset_wSpectra as Dataset
 from datasets.dataset import Dataset_wSpectra_hetero as Dataset
 from configs import PROJECT_ROOT_DIR, PROJECT_DATA_DIR
 from os.path import join
@@ -11,7 +10,8 @@ class PXD(Dataset):
 
         self.psm_feature_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"PXD{data_code}/psm_features", "result.json")
         self.protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"PXD{data_code}/{pretrain_data_name}_result", "result.json")
-        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"uniprot", "uniprot_human_isoform_decoy.fasta")
+        self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"PXD{data_code}/database", "uniprot_human_isoform_decoy.fasta")
+        #self.search_fasta = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR, f"uniprot", "uniprot_human_isoform_decoy.fasta")
         super().__init__(f"PXD{data_code}", protein_label_type, prior=prior, train=train, prior_offset=prior_offset, filter_psm=filter_psm, output_type=output_type)
 
     def get_protein_labels_by_groundtruth(self):
