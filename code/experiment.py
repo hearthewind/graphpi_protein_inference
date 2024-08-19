@@ -9,6 +9,8 @@ import pickle
 import os
 import seaborn as sns
 from datasets.mix18 import Mix18
+import json
+
 
 def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="default"):
     X = []
@@ -26,7 +28,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
             indistinguishable_groups[dataset] = pickle.load(f)
 
     fdr_rates = np.arange(0, 0.15, 0.01)
-    for dataset in datasets:
+    for dataset in TEST_DATA:
         data = get_dataset(dataset=dataset, process=False)
         for pretrain_data_name in baselines:
             if pretrain_data_name in ["epifany", "fido"]:
@@ -77,6 +79,9 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
                 else:
                     protein_scores = result_dict[dataset]
             elif pretrain_data_name == "deeppep":
+                if dataset == "18mix":
+                    continue
+
                 if "iPRG2016" in dataset:
                     dataset_prefix, dataset_type = dataset.split("_")
                     protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
@@ -156,7 +161,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
     plt.tight_layout()
     plt.savefig(os.path.join(PROJECT_ROOT_DIR, save_dir, "predictions", f"experiment_plot_{image_post_fix}.png"))
 
-import json
+
 def extract_protein_score(protein_score_path, method="pia"):
     """
     Extract the protein scores from a benchmark algorithm (e.g. FIDO)
