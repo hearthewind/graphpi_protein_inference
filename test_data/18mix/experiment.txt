@@ -1,6 +1,0 @@
-0.6Da ms1/ms2 mass tolerance
-0.4Da ms2 bin offset
-
-CM mod, 1miss
-
-LTQ, Mix 7
