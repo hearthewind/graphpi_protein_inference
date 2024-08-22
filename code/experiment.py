@@ -86,7 +86,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
                     dataset_prefix, dataset_type = dataset.split("_")
                     protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
                                               f"{dataset_prefix.lower()}/{pretrain_data_name}_result",
-                                              f"result_{dataset_type}.csv")
+                                              f"result_{dataset_type.lower()}.csv")
                 elif 'hela_3t3' in dataset:
                     protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
                                               f"{dataset}/{pretrain_data_name}_result", f"{data.data_code}.csv")
@@ -127,7 +127,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
                     dataset_prefix, dataset_type = dataset.split("_")
                     protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
                                               f"{dataset_prefix.lower()}/{pretrain_data_name}_result",
-                                              f"result_{dataset_type}.json")
+                                              f"result_{dataset_type.lower()}.json")
                 else:
                     protein_score_path = join(PROJECT_ROOT_DIR, PROJECT_DATA_DIR,
                                               f"{dataset}/{pretrain_data_name}_result", "result.json")
@@ -158,6 +158,21 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
         sns.lineplot(data=data_.query(f"dataset=='{dataset}'"), x="fdr", y="# positive proteins", hue="method", ci=None, ax=ax)
         ax.set_title(dataset)
         ax.legend(loc="right")
+
+        ax.set_xlim(0.005, 0.055)
+
+        if dataset == 'iPRG2016_A':
+            ax.set_ylim((120, 190))
+        elif dataset == 'iPRG2016_B':
+            ax.set_ylim((0, 195))
+        elif dataset == 'iPRG2016_AB':
+            ax.set_ylim((220, 380))
+        elif dataset == 'ups2':
+            ax.set_ylim((12, 27))
+        elif dataset == 'yeast':
+            ax.set_ylim((0, 600))
+        elif dataset == '18mix':
+            ax.set_ylim((0, 18))
     plt.tight_layout()
     plt.savefig(os.path.join(PROJECT_ROOT_DIR, save_dir, "predictions", f"experiment_plot_{image_post_fix}.png"))
 

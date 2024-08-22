@@ -54,11 +54,11 @@ def parse_args():
     parser.add_argument('--use_deeppep', type=bool, default=False)
 
     # for self training
-    parser.add_argument('--rounds', type=int, default=5)
+    parser.add_argument('--rounds', type=int, default=10)
     parser.add_argument('--percentage', type=float, default=1.0)
     parser.add_argument('--average', type=bool, default=True)
     parser.add_argument('--concat_old', type=bool, default=False)
-    parser.add_argument('--save_result_dir', type=str, default="self_avg")
+    parser.add_argument('--save_result_dir', type=str, default="results")
 
     parser.add_argument('-f')
 

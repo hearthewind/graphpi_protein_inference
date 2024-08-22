@@ -1,4 +1,5 @@
-PROJECT_ROOT_DIR = "/home/k/data/Projects/graphpi_protein_inference/"
+# PROJECT_ROOT_DIR = "/home/m/git/graphpi_protein_inference/"
+PROJECT_ROOT_DIR = '../'
 
 PROJECT_DATA_DIR = "data"
 
@@ -10,5 +11,5 @@ PROJECT_DATA_DIR = "data"
 DATA_LIST = ["PXD005388"]
 
 # The data list for test data.
-TEST_DATA = ['ups2', '18mix', 'yeast', 'iPRG2016_A', 'iPRG2016_AB', 'iPRG2016_B']
+TEST_DATA = ['ups2', '18mix', 'yeast', 'iPRG2016_A', 'iPRG2016_AB', 'iPRG2016_B', 'hela_3t3']
 #TEST_DATA = ['18mix']

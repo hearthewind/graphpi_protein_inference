@@ -32,7 +32,8 @@ def main():
         with open(os.path.join(PROJECT_ROOT_DIR, args.save_result_dir, "groups", f"{group_name}_groups.pkl"), "wb") as f:
             pickle.dump(indishtinguishable_group, f)
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    # device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cpu"
 
     models = get_model(args, device, test_data)
 
