@@ -1,1 +1,1 @@
-# protein-inference
+# Code for graphpi_protein-inference

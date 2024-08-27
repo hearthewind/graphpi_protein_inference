@@ -2,17 +2,17 @@
 
 
 ## Folder Structure
-   └── code:
-   └── data: the folder contains the PSM features, database and ...
-   └── results: our trained model is saved here.
-   └── knime_workflows: contains the knime workflows for how to reproduce the PIA, .... results..
+    └── code: contains the source code for the project.
+    └── data: the folder contains the PSM features, database and ...
+    └── results: our trained model is saved here.
+    └── knime_workflows: contains the knime workflows for how to reproduce the PIA, .... results..
 
 ## Usage
 
 ### Environment Setup
 
 For environment preparing, please use conda:
-... pip install ... requirement.txt...
+conda env create -f environment.yml
 
 
 ### Train
