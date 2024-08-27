@@ -7,11 +7,11 @@ from torch.nn import Parameter
 from torch_scatter import scatter_add
 from torch_geometric.nn.conv import MessagePassing
 
-from models.encoder import EncoderRNN, EncoderTransformer, EncoderCNN
+from models.encoder import EncoderRNN, EncoderCNN
 from models.util import get_activation
 from torch.nn.init import xavier_uniform_, zeros_
 from collections import defaultdict
-from torch_geometric.utils import degree, add_self_loops, add_remaining_self_loops
+from torch_geometric.utils import add_remaining_self_loops
 from torch_geometric.nn.dense.linear import Linear
 from torch_geometric.nn.inits import zeros
 

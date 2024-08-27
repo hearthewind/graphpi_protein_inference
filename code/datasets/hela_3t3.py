@@ -1,11 +1,9 @@
-#from datasets.dataset import Dataset_wSpectra as Dataset
 from datasets.dataset import Dataset_wSpectra_hetero as Dataset
 from configs import PROJECT_ROOT_DIR, PROJECT_DATA_DIR
 from os.path import join
-import pandas as pd
 
-default_code = "hela"
-default_method = "human"
+default_code = "3t3"
+default_method = "mouse"
 class Hela3T3(Dataset):
 
     def __init__(self, data_code=default_code, groundtruth_method=default_method, protein_label_type='benchmark', prior=True, prior_offset=0.9, train=True, filter_psm=True, output_type="cross_entropy", pretrain_data_name="epifany"):

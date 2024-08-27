@@ -1,4 +1,3 @@
-#from datasets.dataset import Dataset_wSpectra as Dataset
 from datasets.dataset import Dataset_wSpectra_hetero as Dataset
 from configs import PROJECT_ROOT_DIR, PROJECT_DATA_DIR
 from os.path import join

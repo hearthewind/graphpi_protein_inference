@@ -1,7 +1,6 @@
 import logging
 
 from datasets.deeppep import get_deeppep_feature
-from datasets.fasta import parse_stream
 import abc
 import json
 import torch

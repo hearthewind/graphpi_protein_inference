@@ -1,18 +1,14 @@
 import torch
 import os
-import subprocess
-import numpy as np
 import torch.optim as optim
 from torch_geometric.data import HeteroData
 from configs import PROJECT_ROOT_DIR
 from typing import List
 
 from datasets.hela_3t3 import Hela3T3
-from datasets.iPRG2016_twospicies import IPRG2016TS
 from datasets.yeast import Yeast
 from datasets.iPRG2016 import IPRG2016
 from datasets.ups2 import UPS2
-from datasets.humanDC import HumanDC
 from datasets.pxd import PXD
 from datasets.mix18 import Mix18
 from models.gnn_model import GNNModel, GNNStack
@@ -125,21 +121,16 @@ def get_model_hetero_single(args, device, data):
     return model
 
 
-def get_dataset(dataset="HumanDC", train=True, prior=True, prior_offset=0.9, protein_label_type = "benchmark", loss_type = "cross_entropy", pretrain_data_name="epifany", process=True, use_deeppep=False):
+def get_dataset(dataset="yeast", train=True, prior=True, prior_offset=0.9, protein_label_type = "benchmark", loss_type = "cross_entropy", pretrain_data_name="epifany", process=True, use_deeppep=False):
 
     #prior = False if train is True else True
     if dataset == "yeast":
         data = Yeast(protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
-    elif dataset.startswith("iPRG2016TS"):
-        data_type = dataset.split("_")[1]
-        data = IPRG2016TS(data_type=data_type, protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
     elif dataset.startswith("iPRG2016"):
         data_type = dataset.split("_")[1]
         data = IPRG2016(data_type=data_type, protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
     elif dataset.startswith("ups2"):
         data = UPS2(protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
-    elif dataset == "humanDC":
-        data = HumanDC(protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
     elif dataset == "18mix":
         data = Mix18(protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
     elif dataset.startswith("PXD"):
