@@ -1,11 +1,23 @@
-# protein-inference
+# GraphPI Protein Inference
 
 
 ## Folder Structure
     └── code: contains the source code for the project.
-    └── data: the folder contains the PSM features, database and ...
-    └── results: our trained model is saved here.
-    └── knime_workflows: contains the knime workflows for how to reproduce the PIA, .... results..
+        └── main_train.py: main file to train the model.
+        └── main_eval.py: main file to make predictions.
+        └── configs.py : contains the configuration for the project.
+    └── data: contains our test data, which includes:
+        └── PSM features.
+        └── Fasta database (these two constitute the input to our algorithm). 
+        └── Results from other algorithms.
+    └── results: our trained model is saved here, also includes:
+        └── Protein groups.
+        └── Prediction made by our algorithm.
+    └── knime_workflows: contains the knime workflows.
+        └── generate_decoy: generate decoy database based on fasta file.
+        └── comet_search: execute peptide search algorithm
+        └── epifany_pipeline: run epifany on Percolator results, also includes Percolator to generate PSM features.
+        └── fido_pipeline, pia_pipeline: run fido and pia.
 
 ## Usage
 
@@ -14,19 +26,24 @@
 For environment preparing, please use conda:
 conda env create -f environment.yml
 
-
 ### Train
 
 #### Pretrain data
 
-We use the data from the public repository (promeXchange), please use the link below to download the raw files and process them according to their respective configuration.
+We use data from the public repository (promeXchange) for training purpose, 
+the link to download the raw files are included in Table S2 in supporting information.
+Please run the following procedure to acquire training features.
 
-1. give the links...
-2. how we obtain the psm features and protein scores...
-3. To run this program for demonstration, we provide the psm and epifany scores for a dataset which is stored in....
-4. Change the data directory and project root directory to ... in configs
+1. Download the raw files from proteomeXchange, the fasta database from Uniprot.
+2. Run the generate_decoy knime workflow to generate a decoy fasta database.
+3. Run the comet_search knime workflow for peptide database search and Percolator.
+4. Run the epifany_pipeline knime workflow to generate the psm and epifany scores.
+5. Collect the psm and epifany scores for all training data.
+
+To run this program for demonstration, we provide the psm and epifany scores for one single dataset which is stored in data/PXD005388/.
+
 #### Run
-You can run the following commands to train the model...
+Run main_train.py to train the model.
 
 ### Inference
 
