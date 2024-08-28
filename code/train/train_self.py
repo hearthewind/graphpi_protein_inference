@@ -53,7 +53,7 @@ def parse_args():
     parser.add_argument('--use_deeppep', type=bool, default=False)
 
     # for self training
-    parser.add_argument('--rounds', type=int, default=5)
+    parser.add_argument('--rounds', type=int, default=10)
     parser.add_argument('--percentage', type=float, default=1.0)
     parser.add_argument('--average', type=bool, default=True)
     parser.add_argument('--concat_old', type=bool, default=False)
@@ -107,7 +107,7 @@ def main():
     test_samplers = []
     for test_data in TEST_DATA:
         test_datasets.append(get_dataset(test_data, train=False, prior=args.prior, prior_offset=args.prior_offset, pretrain_data_name=args.pretrain_data_name, use_deeppep=args.use_deeppep))
-        if test_data != "yeast":
+        if test_data not in  ["yeast", "hela_3t3"]:
             if args.batch_size <= 0:
                 test_samplers.append(test_datasets[-1])
             else:
@@ -156,35 +156,37 @@ def train_pipeline(args, data_samplers, st_samplers, test_datasets, test_sampler
             train_loss = train_hetero(models, data_samplers, device, optimizer, args.loss_type)
             valid_loss, valid_score = test_hetero(models, data_samplers, device, args.loss_type)
 
-            if epoch % evaluate_epoch_num == 0:
-                len_true_proteins, _, pauc_dict = evaluate_hetero(models, valid_datasets, device)
+            #if epoch % evaluate_epoch_num == 0:
+            #    len_true_proteins, _, pauc_dict = evaluate_hetero(models, valid_datasets, device)
         else:
             train_loss = train_hetero_batch(models, data_samplers, device, optimizer, args.loss_type)
             valid_loss, valid_score = test_hetero_batch(models, data_samplers, device, args.loss_type)
-            if epoch % evaluate_epoch_num == 0:
-                len_true_proteins, _ = evaluate_hetero_batch(models, test_samplers, device)
+            #if epoch % evaluate_epoch_num == 0:
+            #   len_true_proteins, _ = evaluate_hetero_batch(models, test_samplers, device)
 
         model_name = f"{args.save_result_dir}/trained_model/pretrain_st_{args.loss_type}_{args.pretrain_data_name}_{args.protein_label_type}_prior-{args.prior}_offset-{args.prior_offset}"
         if args.loss_type == "soft_entropy":
             if best_valid_loss > valid_loss:
-                best_true_proteins = len_true_proteins
+                #best_true_proteins = len_true_proteins
                 best_valid_loss = valid_loss
                 save_torch_algo(models,model_name)
                 best_params = copy.deepcopy(models.state_dict())
             if epoch % evaluate_epoch_num == 0:
-                print(f'Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}. Num true proteins: {len_true_proteins},\
-                 optimal true proteins: {best_true_proteins}')
-
+                # print(f'Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}. Num true proteins: {len_true_proteins},\
+                #  optimal true proteins: {best_true_proteins}')
+                print(f'Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}.')
         elif args.loss_type == "cross_entropy":
             if best_valid_score < valid_score:
-                best_true_proteins = len_true_proteins
-                best_pauc = pauc_dict
+                #best_true_proteins = len_true_proteins
+                #best_pauc = pauc_dict
                 best_valid_score = valid_score
                 save_torch_algo(models, model_name)
                 best_params = copy.deepcopy(models.state_dict())
             if epoch % evaluate_epoch_num == 0:
+                # print(f'Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}, '
+                #       f'Val score: {valid_score:.4f}. Num true proteins: {len_true_proteins}, optimal true proteins: {best_true_proteins}, optimal partial AUC: {best_pauc}')
                 print(f'Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}, '
-                      f'Val score: {valid_score:.4f}. Num true proteins: {len_true_proteins}, optimal true proteins: {best_true_proteins}, optimal partial AUC: {best_pauc}')
+                      f'Val score: {valid_score:.4f}. ')
 
     ### start selftraining
     models, best_params = self_training(args, st_samplers, device, models, best_params, valid_datasets, test_samplers, evaluate_epoch_num)
@@ -273,36 +275,40 @@ def one_round_self_training(args, i, st_samplers, device, old_models, old_params
         if args.batch_size <= 0:
             train_loss = train_hetero(models, new_data_samplers, device, optimizer, args.loss_type)
             valid_loss, valid_score = test_hetero(models, new_data_samplers, device, args.loss_type)
-            if epoch % evaluate_epoch_num == 0:
-                len_true_proteins, _, pauc_dict = evaluate_hetero(models, valid_datasets, device)
+            # if epoch % evaluate_epoch_num == 0:
+            #     len_true_proteins, _, pauc_dict = evaluate_hetero(models, valid_datasets, device)
         else:
             train_loss = train_hetero_batch(models, new_data_samplers, device, optimizer, args.loss_type)
             valid_loss, valid_score = test_hetero_batch(models, new_data_samplers, device, args.loss_type)
-            if epoch % evaluate_epoch_num == 0:
-                len_true_proteins, _ = evaluate_hetero_batch(models, test_samplers, device)
+            # if epoch % evaluate_epoch_num == 0:
+            #     len_true_proteins, _ = evaluate_hetero_batch(models, test_samplers, device)
 
         if args.loss_type == "soft_entropy":
             if best_valid_loss > valid_loss:
-                best_true_proteins = len_true_proteins
+                #best_true_proteins = len_true_proteins
                 best_valid_loss = valid_loss
                 save_torch_algo(models, model_name)
                 best_params = copy.deepcopy(models.state_dict())
 
             if epoch % evaluate_epoch_num == 0:
+                # print(
+                #     f'SelfTrain {i} Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}. Num true proteins: {len_true_proteins},\
+                #          optimal true proteins: {best_true_proteins}')
                 print(
-                    f'SelfTrain {i} Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}. Num true proteins: {len_true_proteins},\
-                         optimal true proteins: {best_true_proteins}')
+                    f'SelfTrain {i} Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}. ')
 
         elif args.loss_type == "cross_entropy":
             if best_valid_score < valid_score:
-                best_true_proteins = len_true_proteins
+                #best_true_proteins = len_true_proteins
                 best_valid_score = valid_score
-                best_pauc = pauc_dict
+                #best_pauc = pauc_dict
                 save_torch_algo(models, model_name)
                 best_params = copy.deepcopy(models.state_dict())
             if epoch % evaluate_epoch_num == 0:
+                # print(f'SelfTrain {i} Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}, '
+                #       f'Val score: {valid_score:.4f}. Num true proteins: {len_true_proteins}, optimal true proteins: {best_true_proteins}, optimal pauc: {best_pauc}')
                 print(f'SelfTrain {i} Epoch: {epoch:04d}, Train loss: {train_loss:.4f}, Valid loss: {valid_loss:.4f}, '
-                      f'Val score: {valid_score:.4f}. Num true proteins: {len_true_proteins}, optimal true proteins: {best_true_proteins}, optimal pauc: {best_pauc}')
+                      f'Val score: {valid_score:.4f}. ')
 
     return models, best_params
 

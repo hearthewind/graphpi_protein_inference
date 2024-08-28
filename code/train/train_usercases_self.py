@@ -1,6 +1,5 @@
-# configs.TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
-# TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
 from train.train_self import *
+from experiment import get_fdr_vs_TP_graphs
 
 def main():
 
@@ -12,6 +11,7 @@ def main():
 
     test_datasets = []
     for test_data in TEST_DATA:
+        print("Loading test data {} ...".format(test_data))
         test_datasets.append(get_dataset(test_data, train=False, prior=args.prior, prior_offset=args.prior_offset, pretrain_data_name=args.pretrain_data_name))
 
     for test_data in test_datasets:

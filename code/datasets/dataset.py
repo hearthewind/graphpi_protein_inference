@@ -418,7 +418,6 @@ class Dataset():
             if len(group)>1:
                 if group not in groups:
                     groups.append(group)
-        print(f"The degenerate groups for {self.dataset} is:", len(groups))
         return groups
 
     def get_indistinguishable_group(self, protein_peptide_mapping, peptide_score, threshold=0.1):
@@ -799,7 +798,6 @@ class Dataset_wSpectra(Dataset):
         # {"IonFrac": (188, 10), "deltaCn": (188, 9), "deltaLCn": (186, 12), "lnExpect": (184, 20), "suspect_logits": (121, 14), "spScores":(189, 12),\
         # "xCorr": (190, 19), "1001491": (187, 12), "lnNumSP": (190, 13), "1001492": (185, 18), "1001493": (187, 19), "1002252": (187, 17), "1002253": (186, 18),\
         # "1002254":(190, 12), "1002255": (187, 14), "1002256": (186, 18), "1002257":(184, 1), "1002258": (184, 19), "1002259":(190, 10)}
-        print(feature_names)
 
         for psm in psm_features:
             #spectra_features[psm["spectra"]] = [psm["pep"]]
@@ -1109,7 +1107,7 @@ class Dataset_wSpectra_hetero(Dataset):
         #                  "xCorr", "pep", "1001491", "1001492", "1001493", "1002252", "1002253", "1002254",\
         #                  "1002255", "1002256", "1002257", "1002258", "1002259"]
         # feature_names = ["pep"]
-        print(feature_names)
+        #print(feature_names)
 
         for psm in psm_features:
             spectra_features[psm["spectra"]] = [psm[feature] for feature in feature_names]
@@ -1388,7 +1386,7 @@ class Dataset_wSpectra_hetero_single(Dataset):
         #                  "xCorr", "pep", "1001491", "1001492", "1001493", "1002252", "1002253", "1002254",\
         #                  "1002255", "1002256", "1002257", "1002258", "1002259"]
         #feature_names = ["pep"]
-        print(feature_names)
+        # print(feature_names)
 
         for psm in psm_features:
             spectra_features[psm["spectra"]] = [psm[feature] for feature in feature_names]
