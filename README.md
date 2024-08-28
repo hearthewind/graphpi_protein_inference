@@ -1,6 +1,6 @@
 # GraphPI Protein Inference
 
-
+![GraphPI Structure](overall_graphPI_structure.svg)
 
 ## Folder Structure
     └── code: contains the source code for the project.
