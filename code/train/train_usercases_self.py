@@ -1,6 +1,5 @@
-# configs.TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
-# TEST_DATA = ['18mix', 'iPRG2016_B', 'iPRG2016_A', "iPRG2016_AB", "ups2", "yeast"]
 from train.train_self import *
+from experiment import get_fdr_vs_TP_graphs
 
 def main():
 
