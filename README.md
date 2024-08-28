@@ -38,7 +38,7 @@ Please run the following procedure to acquire training data.
 1. Download the raw files from proteomeXchange, the fasta database from Uniprot.
 2. Run the generate_decoy knime workflow to generate a decoy fasta database.
 3. Convert raw file into mzML format using ProteoWizard (with peaks picking).
-3. Run the comet_search knime workflow with mzml and decoy fasta files for peptide database search.
+3. Run the comet_search knime workflow with mzml and decoy fasta files for peptide database search, please make sure to use correct search parameters from the dataset provider.
 4. Run the epifany_pipeline knime workflow with idxml and decoy fasta files to generate the psm features and epifany scores.
 5. Collect the psm and epifany scores for all training data.
 
@@ -63,7 +63,7 @@ for every test data.
 To evaluate any dataset with just raw and fasta files, please follow the steps below:
 1. Run the generate_decoy knime workflow to generate a decoy fasta database.
 2. Convert raw file into mzml format using ProteoWizard (with peaks picking).
-3. Run the comet_search knime workflow with mzml and decoy fasta files for peptide database search.
+3. Run the comet_search knime workflow with mzml and decoy fasta files for peptide database search, please make sure to use correct search parameters from the dataset provider.
 4. Run the epifany_pipeline knime workflow with idxml and decoy fasta files to generate the psm features.
 5. Create a folder under data, put the psm feature and decoy fasta files to appropriate positions in the folder.
 6. Modify the config file to include the new test dataset.
