@@ -1,6 +1,7 @@
 # GraphPI Protein Inference
 
 
+
 ## Folder Structure
     └── code: contains the source code for the project.
         └── main_train.py: main file to train the model.
@@ -31,17 +32,19 @@ conda env create -f environment.yml
 #### Pretrain data
 
 We use data from the public repository (promeXchange) for training purpose, 
-the link to download the raw files are included in Table S2 in supporting information.
-Please run the following procedure to acquire training features.
+the link to download the raw files are included in Supporting Table S2.
+Please run the following procedure to acquire training data.
 
 1. Download the raw files from proteomeXchange, the fasta database from Uniprot.
 2. Run the generate_decoy knime workflow to generate a decoy fasta database.
-3. Run the comet_search knime workflow for peptide database search and Percolator.
-4. Run the epifany_pipeline knime workflow to generate the psm and epifany scores.
+3. Convert raw file into mzML format using ProteoWizard (with peaks picking).
+3. Run the comet_search knime workflow with mzml and decoy fasta files for peptide database search.
+4. Run the epifany_pipeline knime workflow with idxml and decoy fasta files to generate the psm features and epifany scores.
 5. Collect the psm and epifany scores for all training data.
 
 To run this program for demonstration, we provide the psm and epifany scores for one single dataset which is stored in data/PXD005388/.
 
+Please make sure to use KNIME version 4.7.7 for our workflows, we might have some compatibility issue with the latest release.
 #### Run
 Run main_train.py to train the model.
 
@@ -49,10 +52,20 @@ Run main_train.py to train the model.
 
 #### Test data
 
-We use what data... and their raw files can be download from...
-and we stored their psm features json files in ...
+For our comparison study, our test data (and download links) are listed in Supporting Material S1.
+The processed PSM features and decoy databases are included in the data folder.
 
 #### Run
-You can run the following commands to train the model
+Run main_eval.py to make predictions on our test datasets, ROC plots will be generated
+for every test data.
 
+#### Evaluate on any dataset
+To evaluate any dataset with just raw and fasta files, please follow the steps below:
+1. Run the generate_decoy knime workflow to generate a decoy fasta database.
+2. Convert raw file into mzml format using ProteoWizard (with peaks picking).
+3. Run the comet_search knime workflow with mzml and decoy fasta files for peptide database search.
+4. Run the epifany_pipeline knime workflow with idxml and decoy fasta files to generate the psm features.
+5. Create a folder under data, put the psm feature and decoy fasta files to appropriate positions in the folder.
+6. Modify the config file to include the new test dataset.
 
+Note that epifany_pipeline will run both Percolator and Epifany, and here we only need the result from Percolator.
