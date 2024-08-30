@@ -47,6 +47,7 @@ To run this program for demonstration, we provide the psm and epifany scores for
 Please make sure to use KNIME version 4.7.7 for our workflows, we might have some compatibility issue with the latest release.
 #### Run
 Change the DATA_LIST in the configs file to the updated pretraining PXD datasets. (e.g., if you want to only use PXD005388 for training, then set DATA_LIST=["PXD005388"].)
+
 Run main_train.py to train the model.
 
 ### Inference
