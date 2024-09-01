@@ -365,7 +365,7 @@ def store_result_avg(args, test_datasets, device, test_fdr=0.05):
                                                                for protein_ in protein_pairs] for protein, protein_pairs
             in dataset.indistinguishable_groups.items()}
 
-        true_proteins = get_proteins_by_fdr(result, fdr=test_fdr, contaminate_proteins=contaminate_proteins,
+        true_proteins = get_proteins_by_fdr(result, fdr=test_fdr, max_len=10000, contaminate_proteins=contaminate_proteins,
                                             indishtinguishable_group=indishtinguishable_group)
 
         len_true_proteins[dataset.dataset] = len(true_proteins)
