@@ -10,6 +10,7 @@ from datasets.yeast import Yeast
 from datasets.iPRG2016 import IPRG2016
 from datasets.ups2 import UPS2
 from datasets.pxd import PXD
+from datasets.test_dataset import TestDataset
 from datasets.mix18 import Mix18
 from models.gnn_model import GNNModel, GNNStack
 from torch_geometric.loader import NeighborLoader
@@ -138,6 +139,9 @@ def get_dataset(dataset="yeast", train=True, prior=True, prior_offset=0.9, prote
         data = PXD(data_code = data_code, protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
     elif dataset == 'hela_3t3':
         data = Hela3T3(protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name = pretrain_data_name)
+    elif dataset.startswith("TestDataset"):
+        data_code = dataset.strip("TestDataset")
+        data = TestDataset(data_code=data_code, protein_label_type=protein_label_type, prior=prior, prior_offset=prior_offset, train=train, output_type=loss_type, pretrain_data_name=pretrain_data_name)
 
     if use_deeppep:
         data.use_deeppep = True

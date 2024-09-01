@@ -38,7 +38,10 @@ class Dataset():
         self.train = train
         self.output = output_type
 
-        self.protein_scores = self.extract_protein_score()
+        if self.dataset.startswith("TestDataset"):
+            pass
+        else:
+            self.protein_scores = self.extract_protein_score()
         self.psm_features = self.extract_psm_feature(filter=filter_psm)
         self.generate_id_map(self.psm_features)
         self.protein_seq_dict = self.get_protein_sequences(self.search_fasta)

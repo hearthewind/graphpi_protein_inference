@@ -39,8 +39,12 @@ def main():
 
     result_dict, len_true_proteins = store_result(args, test_datasets, device, models)
     num_layers = len(args.model_types.split("_"))
-    get_fdr_vs_TP_graphs(save_dir=args.save_result_dir, result_dict=result_dict,
-                         image_post_fix=f"{num_layers}_{args.node_hidden_dim}_{args.rounds}_{args.epochs}_{args.lr}")
+
+    if TEST_DATA[0].startswith('TestDataset'):
+        pass
+    else:
+        get_fdr_vs_TP_graphs(save_dir=args.save_result_dir, result_dict=result_dict,
+                             image_post_fix=f"{num_layers}_{args.node_hidden_dim}_{args.rounds}_{args.epochs}_{args.lr}")
 
 if __name__ == "__main__":
     main()
