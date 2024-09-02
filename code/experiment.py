@@ -155,7 +155,7 @@ def get_fdr_vs_TP_graphs(save_dir="default", result_dict=None, image_post_fix="d
             ax = axes
         else:
             ax = axes[i]
-        sns.lineplot(data=data_.query(f"dataset=='{dataset}'"), x="fdr", y="# positive proteins", hue="method", ci=None, ax=ax)
+        sns.lineplot(data=data_.query(f"dataset=='{dataset}'"), x="fdr", y="# positive proteins", hue="method", errorbar=None, ax=ax)
         ax.set_title(dataset)
         ax.legend(loc="right")
 

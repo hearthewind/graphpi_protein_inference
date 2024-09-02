@@ -13,4 +13,4 @@ DATA_LIST = ["PXD005388"] # Just one dataset to test the training process
 
 # The data list for test data.
 TEST_DATA = ['ups2', '18mix', 'yeast', 'iPRG2016_A', 'iPRG2016_AB', 'iPRG2016_B', 'hela_3t3']
-# TEST_DATA = ['TestDataset004789']
+# TEST_DATA = ['TestDataset004789'] # To run evaluation on any dataset.
