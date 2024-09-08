@@ -51,6 +51,7 @@ Change the ``DATA_LIST`` in the configs file to the updated pretraining PXD data
 
 Run ``python main_train.py --save_result_dir=test_run`` in the ``code`` folder to train the model.
 
+
 ### Inference
 
 #### Test data
@@ -63,9 +64,11 @@ Please set the ``TEST_DATA`` variable in configs.py to our test datasets, for in
 
 ``TEST_DATA = ['ups2', '18mix', 'yeast', 'iPRG2016_A', 'iPRG2016_AB', 'iPRG2016_B', 'hela_3t3']``
 
+To make predictions on our test datasets using your trained model, please run ``python main_eval.py --save_result_dir=test_run``, ROC plots will be generated
+for every test data under ``test_run/predictions/``.
 
-Run ``main_eval.py`` under the ``code`` folder to make predictions on our test datasets, ROC plots will be generated
-for every test data under ``results/predictions/``.
+To generate the predictions on the test datasets using our pre-trained model, please run ``python main_eval.py`` directly. The results will be stored in ``results/predictions/``.
+
 
 #### Evaluate on any dataset
 To evaluate any dataset with just raw and fasta files, please follow the steps below:
